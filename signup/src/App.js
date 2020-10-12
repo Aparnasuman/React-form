@@ -55,6 +55,7 @@ addItem=(index, value)=>{
   return(
     <div className="container ">
       <div className="row justify-content-md-center">
+        <h1>ToDo List</h1>
         <div className="col-md-4  mt-3">
         {this.state.items.map((item, idx)=>{
           return (<FormName
