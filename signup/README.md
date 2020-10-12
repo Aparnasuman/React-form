@@ -1,5 +1,5 @@
 #Todo List
->"_this project is used for creating a list of Field_"
+>"_this project is used for creating a list of Field_"...
  *Action is used for Adding a List of the Input Field
  *close icon is used for the deleting the field
  *submit is used to store the input Field 
@@ -11,4 +11,4 @@ The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
  
  ###picture of the input Field
- ![formlist](./Capture.png)
+ ![formlist](./Capture.PNG)
