@@ -1,4 +1,6 @@
 import React from 'react';
+import FormName from "./form";
+import './App.css';
 class App extends React.Component{
  
   constructor(props){
@@ -6,16 +8,27 @@ class App extends React.Component{
     this.state  = {
       Firstname:'',
       Lastname:'',
-      items:[],
-      fields:[""]
+      items:[{
+        Firstname: "",
+        Lastname: ""
+      }],
+     
     }
 
   }
 
   onClickButtonAdder=()=> {
+    const itm = [...this.state.items]
+    itm.push({});
     this.setState({
-      fields: ["", ...this.state.fields]
+items: itm
     });
+  }
+  deleteItem=(index)=> {
+    let items = [...this.state.items];
+    items.splice(index , 1);
+    this.setState({ items });
+    console.log(items)
   }
   onhandlechange(e){
     this.setState({
@@ -23,39 +36,37 @@ class App extends React.Component{
     
     });
   }
+
   oninputchange(e){
     this.setState({
       Lastname:e.target.value
     
     });
   }
-addItem=()=>{
+addItem=(index, value)=>{
   let items =this.state.items;
-  items.push([this.state.Firstname, this.state.Lastname]);
+  items[index] = value;
   this.setState({
   items
   })
-console.log(items)
+  console.log(items);
 }
   render(){
   return(
     <div className="container ">
       <div className="row justify-content-md-center">
         <div className="col-md-4  mt-3">
-        {this.state.fields.map((value, index) => (<form    value={value}
-            key={index}>
-             <div className="form-group  col=md-6 d-flex">
-             <label className="mr-3">x</label>
-             <input type="text" className="form-control" id="form-input1" onChange={(e)=>this.onhandlechange(e)} placeholder="x "></input>
-          </div>
-            <div className="form-group col=md-6 d-flex">
-            <label className="mr-3" >y</label>
-            <input type="text" className="form-control" id="form-input2" onChange={(e)=>this.oninputchange(e)}  placeholder="y"></input>
-             </div>
-           </form>
-            ))}
-           <button type="button" className="btn btn-primary mr-3 ml-4" onClick={this.addItem}>Submit</button>
-             <button type="button" className="btn btn-primary" onClick={this.onClickButtonAdder}>Action</button>
+        {this.state.items.map((item, idx)=>{
+          return (<FormName
+          key={idx}
+          index={idx}
+          addItem={this.addItem}
+          deleteItem={this.deleteItem}
+          Firstname={item.Firstname}
+          Lastname={item.Lastname}
+          />)
+        })}
+        <button type="button " className="btn btn-primary acton" onClick={this.onClickButtonAdder}>Action</button>
         </div>
       </div>
        
